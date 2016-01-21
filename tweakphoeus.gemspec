@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Typhoeus on steroids.}
   spec.description   = %q{Typhoeus wrapper with new pretty things: cookie handler for example.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/basestylo/Tweakphoeus/"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -27,8 +27,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'typhoeus', "~> 0.8.0"
-
+  spec.add_dependency 'typhoeus', "~> 1.0.1"
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0", "> 3.0.0"
