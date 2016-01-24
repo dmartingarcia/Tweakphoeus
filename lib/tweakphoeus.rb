@@ -7,13 +7,17 @@ module Tweakphoeus
 
     def initialize()
       @cookie_jar = {}
+      @referer = [""]
+      @base_headers = {}
     end
 
     def get(url, body: nil, headers: nil, redirect: true)
+      set_referer_from_headers(headers)
       http_request(url, body: body, headers: headers, redirect: redirect, method: :get)
     end
 
     def post(url, body: nil, headers: nil, redirect: false)
+      set_referer_from_headers(headers)
       http_request(url, body: body, headers: headers, redirect: redirect, method: :post)
     end
 
@@ -31,12 +35,24 @@ module Tweakphoeus
       domain.match(/([a-zA-Z0-9]+:\/\/|)([^\/]+)/)[2].gsub(/^\./,'')
     end
 
+    def push_referer url = ""
+      @referer << url
+      url
+    end
+
+    def pop_referer
+      @referer.pop
+    end
+
     private
 
     def http_request(url, body: nil, headers: nil, redirect: false, method: method)
-      request_headers = inject_cookies(url, headers)
+      request_headers = @base_headers
+      request_headers["Cookie"] = inject_cookies(url, headers)
+      request_headers["Referer"] = get_referer
       response = Typhoeus.send(method, url, body: body, headers: request_headers)
       obtain_cookies(response)
+      set_referer(url)
       if redirect && has_redirect?(response)
         method = response.code == 307 ? method : :get
         response = http_request(redirect_url(response),
@@ -112,5 +128,20 @@ module Tweakphoeus
     def purge_bad_cookies cookies
       cookies.reject{|e| e.first.last=="\"\""}
     end
+
+    def set_referer_from_headers headers
+      if headers && headers["Referer"].is_a?(String)
+        @referer.last.replace headers["Referer"]
+      end
+    end
+
+    def set_referer url
+      @referer.last.replace url
+    end
+
+    def get_referer
+      @referer.last
+    end
+
   end
 end
