@@ -50,6 +50,10 @@ module Tweakphoeus
       @referer.pop
     end
 
+    def get_referer
+      @referer.last
+    end
+
     private
 
     def http_request(url, body: nil, headers: nil, redirect: false, method: method)
@@ -58,9 +62,12 @@ module Tweakphoeus
       request_headers["Referer"] = get_referer
       response = Typhoeus.send(method, url, body: body, headers: request_headers)
       obtain_cookies(response)
-      set_referer(url)
+      set_referer(url) if method != :post
       if redirect && has_redirect?(response)
-        method = response.code == 307 ? method : :get
+        if response.code != 307
+          method = :get
+          body = nil
+        end
         response = http_request(redirect_url(response),
                                 body: body,
                                 headers: headers,
@@ -78,7 +85,7 @@ module Tweakphoeus
       end
 
       set_cookies_field.each do |cookie|
-        key, value = cookie.match(/^([^=]+)=([^;].+)/).to_a[1..-1]
+        key, value = cookie.match(/^([^=]+)=(.+)/).to_a[1..-1]
         domain = cookie.match(/Domain=([^;]+)/)
 
         if domain.nil?
@@ -89,7 +96,7 @@ module Tweakphoeus
 
         if value != "\"\""
           @cookie_jar[domain] ||= {}
-          @cookie_jar[domain][key] = value
+          @cookie_jar[domain][key] = value.split(';').first
         end
       end
     end
@@ -106,7 +113,7 @@ module Tweakphoeus
         domain = domain.split(".")[1..-1].join(".")
       end
 
-      { "Cookie" => cookies.map{|k,v| "#{k}=#{v}"}.join('; ') }
+      cookies.map{|k,v| "#{k}=#{v}"}.join('; ')
     end
 
     def parse_cookie cookie_string
@@ -143,10 +150,6 @@ module Tweakphoeus
 
     def set_referer url
       @referer.last.replace url
-    end
-
-    def get_referer
-      @referer.last
     end
 
   end
