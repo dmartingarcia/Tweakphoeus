@@ -81,7 +81,7 @@ module Tweakphoeus
       set_cookies_field = response.headers["Set-Cookie"]
       return if set_cookies_field.nil?
       if set_cookies_field.is_a?(String)
-        set_cookies_field = [response.headers["Set-Cookie"]]
+        set_cookies_field = [set_cookies_field]
       end
 
       set_cookies_field.each do |cookie|
@@ -94,9 +94,13 @@ module Tweakphoeus
           domain = domain[1].gsub(/^\./,'')
         end
 
+        value = value.split(';').first
         if value != "\"\""
           @cookie_jar[domain] ||= {}
-          @cookie_jar[domain][key] = value.split(';').first
+          @cookie_jar[domain][key] = value
+        else
+          @cookie_jar[domain] ||= {}
+          @cookie_jar[domain].delete(key)
         end
       end
     end
