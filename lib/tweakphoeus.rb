@@ -8,7 +8,13 @@ module Tweakphoeus
     def initialize()
       @cookie_jar = {}
       @referer = [""]
-      @base_headers = {}
+      @base_headers = {
+        "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0",
+        "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3",
+        "Accept-Encoding" => "",
+        "DNT" => "1",
+        "Connection" => "keep-alive"
+      }
     end
 
     def get(url, body: nil, headers: nil, redirect: true)
