@@ -5,11 +5,11 @@
 [![Issue Count](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/issue_count.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
 # Tweakphoeus
 
-We usually describe this gem as 'typhoeus on steroids'. We add some browser like features, for example cookies management and automation in tipical headers that browsers define in his HTTP stack.
+We usually describe this gem as 'typhoeus on steroids'. We add some browser features, for example cookies management and automation in tipical headers that browsers define in his HTTP stack.
 
 We love scrapping and this gem was created for this. 
 
-From crazy developers to another crazy developers, Created in Bizneo.com and maintained in this not small group of developers.
+From crazy developers to another crazy developers, Created in Bizneo.com and maintained in this small group of developers.
 
 
 ## Installation
@@ -29,6 +29,10 @@ Or install it yourself as:
     $ gem install tweakphoeus
 
 ## Usage
+Like Typhoeus
+
+Tweakphoeus.get(url)
+Tweakphoeus.get(url, headers: hash, body: hash)
 
 TODO: Write usage instructions here
 
