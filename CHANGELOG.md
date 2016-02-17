@@ -1,1 +1,2 @@
 -- v0.1.0 - First stable version: Typhoeus dependency version updated
+-- v0.2.0 - Refactor of cookies format
