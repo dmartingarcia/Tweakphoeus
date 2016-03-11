@@ -5,9 +5,12 @@
 [![Issue Count](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/issue_count.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
 # Tweakphoeus
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tweakphoeus`. To experiment with that code, run `bin/console` for an interactive prompt.
+We usually describe this gem as 'typhoeus on steroids'. We add some browser features, for example cookies management and automation in tipical headers that browsers define in his HTTP stack.
 
-TODO: Delete this and the text above, and describe your gem
+We love scrapping and this gem was created for this. 
+
+From crazy developers to another crazy developers, Created in Bizneo.com and maintained in this small group of developers.
+
 
 ## Installation
 
@@ -26,6 +29,10 @@ Or install it yourself as:
     $ gem install tweakphoeus
 
 ## Usage
+Like Typhoeus
+
+Tweakphoeus.get(url)
+Tweakphoeus.get(url, headers: hash, body: hash)
 
 TODO: Write usage instructions here
 
