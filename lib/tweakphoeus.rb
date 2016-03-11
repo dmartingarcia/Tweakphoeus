@@ -4,6 +4,7 @@ require "typhoeus"
 module Tweakphoeus
   class Client
     attr_accessor :cookie_jar
+    attr_accessor :base_headers
 
     def initialize()
       @cookie_jar = {}
@@ -12,7 +13,6 @@ module Tweakphoeus
         "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0",
         "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3",
         "Accept-Encoding" => "",
-        "DNT" => "1",
         "Connection" => "keep-alive"
       }
     end
@@ -57,7 +57,7 @@ module Tweakphoeus
     private
 
     def http_request(url, body: nil, headers: nil, redirect: false, method: method)
-      request_headers = @base_headers
+      request_headers = merge_default_headers(headers)
       request_headers["Cookie"] = inject_cookies(url, headers)
       request_headers["Referer"] = get_referer
       response = Typhoeus.send(method, url, body: body, headers: request_headers)
@@ -75,6 +75,10 @@ module Tweakphoeus
                                 method: method)
       end
       response
+    end
+
+    def merge_default_headers headers
+      headers ? @base_headers.merge(headers) : @base_headers
     end
 
     def obtain_cookies response

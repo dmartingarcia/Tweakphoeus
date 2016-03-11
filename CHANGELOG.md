@@ -1,2 +1,3 @@
 -- v0.1.0 - First stable version: Typhoeus dependency version updated
 -- v0.2.0 - Refactor of cookies format
+-- v0.2.1 - Add accessor for base headers and merge method
