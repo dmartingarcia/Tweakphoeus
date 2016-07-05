@@ -22,6 +22,11 @@ module Tweakphoeus
       http_request(url, body: body, headers: headers, redirect: redirect, method: :get)
     end
 
+    def delete(url, body: nil, headers: nil, redirect: true)
+      set_referer_from_headers(headers)
+      http_request(url, body: body, headers: headers, redirect: redirect, method: :delete)
+    end
+
     def post(url, body: nil, headers: nil, redirect: false)
       set_referer_from_headers(headers)
       http_request(url, body: body, headers: headers, redirect: redirect, method: :post)
