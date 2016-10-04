@@ -17,9 +17,9 @@ module Tweakphoeus
       }
     end
 
-    def get(url, body: nil, headers: nil, redirect: true)
+    def get(url, body: nil, params: nil, headers: nil, redirect: true)
       set_referer_from_headers(headers)
-      http_request(url, body: body, headers: headers, redirect: redirect, method: :get)
+      http_request(url, body: body, params: params, headers: headers, redirect: redirect, method: :get)
     end
 
     def delete(url, body: nil, headers: nil, redirect: true)
@@ -61,11 +61,11 @@ module Tweakphoeus
 
     private
 
-    def http_request(url, body: nil, headers: nil, redirect: false, method: method)
+    def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: method)
       request_headers = merge_default_headers(headers)
       request_headers["Cookie"] = inject_cookies(url, headers)
       request_headers["Referer"] = get_referer
-      response = Typhoeus.send(method, url, body: body, headers: request_headers)
+      response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers)
       obtain_cookies(response)
       set_referer(url) if method != :post
       if redirect && has_redirect?(response)
