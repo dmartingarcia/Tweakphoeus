@@ -2,3 +2,4 @@
 -- v0.2.0 - Refactor of cookies format
 -- v0.2.1 - Add accessor for base headers and merge method
 -- v0.2.2 - delete method added, thanks @pablobfonseca
+-- v0.2.3 - adding parameter params in order to handle in_url parameters
