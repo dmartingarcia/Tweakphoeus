@@ -27,9 +27,9 @@ module Tweakphoeus
       http_request(url, body: body, headers: headers, redirect: redirect, method: :delete)
     end
 
-    def post(url, body: nil, headers: nil, redirect: false)
+    def post(url, body: nil, params: nil, headers: nil, redirect: false)
       set_referer_from_headers(headers)
-      http_request(url, body: body, headers: headers, redirect: redirect, method: :post)
+      http_request(url, body: body, params: nil, headers: headers, redirect: redirect, method: :post)
     end
 
     def get_hide_inputs response
