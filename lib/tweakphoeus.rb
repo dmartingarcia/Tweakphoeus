@@ -59,11 +59,28 @@ module Tweakphoeus
       @referer.last
     end
 
+    def cookie_string(url, headers={})
+      domain = get_domain(url)
+      headers ||= {}
+      cookies = parse_cookie(headers["Cookie"])
+
+      while domain.present?
+        if @cookie_jar[domain]
+          @cookie_jar[domain].each do |key, value|
+            cookies[key] ||= value
+          end
+        end
+        domain = domain.gsub(/^([^\.]+\.?)/, '')
+      end
+
+      cookies.map{ |key, value| "#{key}=#{value}" }.join('; ')
+    end
+
     private
 
     def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: method)
       request_headers = merge_default_headers(headers)
-      request_headers["Cookie"] = inject_cookies(url, headers)
+      request_headers["Cookie"] = cookie_string(url, headers)
       request_headers["Referer"] = get_referer
       response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers)
       obtain_cookies(response)
@@ -114,27 +131,12 @@ module Tweakphoeus
       end
     end
 
-    def inject_cookies url, headers
-      domain = get_domain(url)
-      headers ||= {}
-      cookies = parse_cookie(headers["Cookie"])
-
-      while domain.split(".").count > 1
-        if @cookie_jar[domain]
-          cookies = @cookie_jar[domain].merge(cookies)
-        end
-        domain = domain.split(".")[1..-1].join(".")
-      end
-
-      cookies.map{|k,v| "#{k}=#{v}"}.join('; ')
-    end
-
-    def parse_cookie cookie_string
+    def parse_cookie(string)
       cookies = {}
 
-      if cookie_string.is_a?(String)
-        cookie_string.split(';').each do |string|
-          key, value = string.split('=')
+      if string.is_a?(String)
+        string.split(';').each do |part|
+          key, value = part.split('=')
           key.strip!
           cookies[key.strip] = value if value && !["Domain","Path","domain","path"].include?(key)
         end
