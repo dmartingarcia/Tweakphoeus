@@ -90,7 +90,7 @@ module Tweakphoeus
 
     private
 
-    def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: method)
+    def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: :get)
       request_headers = merge_default_headers(headers)
       request_headers["Cookie"] = cookie_string(url, headers)
       request_headers["Referer"] = get_referer
