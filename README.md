@@ -36,6 +36,9 @@ Tweakphoeus.get(url, headers: hash, body: hash)
 
 TODO: Write usage instructions here
 
+### Using proxies
+To use HTTP proxies with optional basic authorization, use `set_proxy(url[, user: <user>, password: <pass>])`. Proxy can be disabled with `unset_proxy`.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

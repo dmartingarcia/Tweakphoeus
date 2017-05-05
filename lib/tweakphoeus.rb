@@ -15,6 +15,8 @@ module Tweakphoeus
         "Accept-Encoding" => "",
         "Connection" => "keep-alive"
       }
+      @proxy = nil
+      @proxyuserpwd = nil
     end
 
     def get(url, body: nil, params: nil, headers: nil, redirect: true)
@@ -76,13 +78,23 @@ module Tweakphoeus
       cookies.map{ |key, value| "#{key}=#{value}" }.join('; ')
     end
 
+    def set_proxy(url, auth = nil)
+      @proxyuserpwd = "#{auth[:user]}:#{auth[:password]}" if auth.is_a?(Hash)
+      @proxy = url
+    end
+
+    def unset_proxy
+      @proxyuserpwd = nil
+      @proxy = nil
+    end
+
     private
 
     def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: method)
       request_headers = merge_default_headers(headers)
       request_headers["Cookie"] = cookie_string(url, headers)
       request_headers["Referer"] = get_referer
-      response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers)
+      response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers, proxy: @proxy, proxyuserpwd: @proxyuserpwd)
       obtain_cookies(response)
       set_referer(url) if method != :post
       if redirect && has_redirect?(response)
@@ -166,6 +178,5 @@ module Tweakphoeus
     def set_referer url
       @referer.last.replace url
     end
-
   end
 end
