@@ -5,3 +5,4 @@
 -- v0.2.3 - adding parameter params in order to handle in_url parameters
 -- v0.2.4 - adding parametes to post requests
 -- v0.2.5 - adding public method cookie_string
+-- v0.3.0 - adding HTTP proxy management and fixing circular reference
