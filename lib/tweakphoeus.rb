@@ -10,7 +10,7 @@ module Tweakphoeus
       @cookie_jar = {}
       @referer = [""]
       @base_headers = {
-        "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0",
+        "User-Agent" => UserAgent.random(systems: [:linux, :mac]),
         "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3",
         "Accept-Encoding" => "",
         "Connection" => "keep-alive"
