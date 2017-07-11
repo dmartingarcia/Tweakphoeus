@@ -1,4 +1,5 @@
 require "tweakphoeus/version"
+require "tweakphoeus/user_agent"
 require "typhoeus"
 
 module Tweakphoeus
