@@ -14,4 +14,4 @@
 
 -- v0.3.0 - adding HTTP proxy management and fixing circular reference
 
--- v0.4.0 - adding random User-Agent generator
+-- v0.4.1 - adding random User-Agent generator
