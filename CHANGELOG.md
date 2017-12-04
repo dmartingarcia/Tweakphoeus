@@ -15,3 +15,5 @@
 -- v0.3.0 - adding HTTP proxy management and fixing circular reference
 
 -- v0.4.1 - adding random User-Agent generator
+
+-- v0.4.2 - adding ssl verification & deletion of active support methods
