@@ -18,21 +18,22 @@ module Tweakphoeus
       }
       @proxy = nil
       @proxyuserpwd = nil
+      @ssl_verifypeer = true
     end
 
-    def get(url, body: nil, params: nil, headers: nil, redirect: true)
+    def get(url, body: nil, params: nil, headers: nil, redirect: true, ssl_verifypeer: @ssl_verifypeer)
       set_referer_from_headers(headers)
-      http_request(url, body: body, params: params, headers: headers, redirect: redirect, method: :get)
+      http_request(url, body: body, params: params, headers: headers, redirect: redirect, method: :get, ssl_verifypeer: ssl_verifypeer)
     end
 
-    def delete(url, body: nil, headers: nil, redirect: true)
+    def delete(url, body: nil, headers: nil, redirect: true, ssl_verifypeer: @ssl_verifypeer)
       set_referer_from_headers(headers)
-      http_request(url, body: body, headers: headers, redirect: redirect, method: :delete)
+      http_request(url, body: body, headers: headers, redirect: redirect, method: :delete, ssl_verifypeer: ssl_verifypeer)
     end
 
-    def post(url, body: nil, params: nil, headers: nil, redirect: false)
+    def post(url, body: nil, params: nil, headers: nil, redirect: false, ssl_verifypeer: @ssl_verifypeer)
       set_referer_from_headers(headers)
-      http_request(url, body: body, params: nil, headers: headers, redirect: redirect, method: :post)
+      http_request(url, body: body, params: nil, headers: headers, redirect: redirect, method: :post, ssl_verifypeer: ssl_verifypeer)
     end
 
     def get_hide_inputs response
@@ -67,7 +68,7 @@ module Tweakphoeus
       headers ||= {}
       cookies = parse_cookie(headers["Cookie"])
 
-      while domain.present?
+      while domain != ""
         if @cookie_jar[domain]
           @cookie_jar[domain].each do |key, value|
             cookies[key] ||= value
@@ -91,11 +92,11 @@ module Tweakphoeus
 
     private
 
-    def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: :get)
+    def http_request(url, body: nil, params: nil, headers: nil, redirect: false, method: :get, ssl_verifypeer: @ssl_verifypeer)
       request_headers = merge_default_headers(headers)
       request_headers["Cookie"] = cookie_string(url, headers)
       request_headers["Referer"] = get_referer
-      response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers, proxy: @proxy, proxyuserpwd: @proxyuserpwd)
+      response = Typhoeus.send(method, url, body: body, params: params, headers: request_headers, proxy: @proxy, proxyuserpwd: @proxyuserpwd, ssl_verifypeer: ssl_verifypeer)
       obtain_cookies(response)
       set_referer(url) if method != :post
       if redirect && has_redirect?(response)
@@ -107,7 +108,8 @@ module Tweakphoeus
                                 body: body,
                                 headers: headers,
                                 redirect: redirect,
-                                method: method)
+                                method: method,
+                                ssl_verifypeer: ssl_verifypeer)
       end
       response
     end
