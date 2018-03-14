@@ -7,12 +7,12 @@ module Tweakphoeus
     attr_accessor :cookie_jar
     attr_accessor :base_headers
 
-    def initialize()
+    def initialize(ua_systems: [:linux, :mac])
       @cookie_jar = {}
       @referer = [""]
       @base_headers = {
-        "User-Agent" => UserAgent.random(systems: [:linux, :mac]),
-        "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3",
+        "User-Agent" => UserAgent.random(systems: systems),
+        "Accept-Language" => "es-ES,es;q=0.9,en;q=0.8",
         "Accept-Encoding" => "",
         "Connection" => "keep-alive"
       }
