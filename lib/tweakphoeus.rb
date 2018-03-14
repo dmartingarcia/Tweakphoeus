@@ -11,7 +11,7 @@ module Tweakphoeus
       @cookie_jar = {}
       @referer = [""]
       @base_headers = {
-        "User-Agent" => UserAgent.random(systems: systems),
+        "User-Agent" => UserAgent.random(systems: ua_systems),
         "Accept-Language" => "es-ES,es;q=0.9,en;q=0.8",
         "Accept-Encoding" => "",
         "Connection" => "keep-alive"
