@@ -17,3 +17,5 @@
 -- v0.4.1 - adding random User-Agent generator
 
 -- v0.4.2 - adding ssl verification & deletion of active support methods
+
+-- v0.4.5 - pushing typhoeus version
