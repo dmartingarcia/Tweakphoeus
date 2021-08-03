@@ -19,3 +19,18 @@
 -- v0.4.2 - adding ssl verification & deletion of active support methods
 
 -- v0.4.5 - pushing typhoeus version
+
+-- v0.5.0 - Upgrading dependencies and revamping development environment
+
+Bumping required ruby version to >=2.6.0
+
+
+Upgrading Typhoeus dependency to 1.4.0
+
+
+Upgrading Development dependencies:
+- Bundler 2.2
+- Rake 13.0
+- Rspec 3.10
+
+Swapping CI environment from CircleCI to Github Actions
