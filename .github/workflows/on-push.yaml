@@ -1,0 +1,26 @@
+name: Github on-push Action
+on: [push]
+
+jobs:
+  reek:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Analyze code statically using Reek
+        uses: moneyforward/reek-action@v0
+  brakeman:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Brakeman
+      uses: devmasx/brakeman-linter-action@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Rubocop checks
+        uses: luizfonseca/github-actions-rubocop@1.5.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
