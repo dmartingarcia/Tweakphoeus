@@ -1,13 +1,11 @@
-[![Stories in Ready](https://badge.waffle.io/basestylo/Tweakphoeus.png?label=ready&title=Ready)](https://waffle.io/basestylo/Tweakphoeus)
 [![Gem Version](https://badge.fury.io/rb/tweakphoeus.svg)](https://badge.fury.io/rb/tweakphoeus)
-[![Circle CI](https://circleci.com/gh/basestylo/Tweakphoeus/tree/master.svg?style=svg)](https://circleci.com/gh/basestylo/Tweakphoeus/tree/master)
 [![Code Climate](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/gpa.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
 [![Issue Count](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/issue_count.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
 # Tweakphoeus
 
 We usually describe this gem as 'typhoeus on steroids'. We add some browser features, for example cookies management and automation in tipical headers that browsers define in his HTTP stack.
 
-We love scrapping and this gem was created for this. 
+We love scrapping and this gem was created for this.
 
 From crazy developers to another crazy developers, Created in Bizneo.com and maintained in this small group of developers.
 
@@ -53,4 +51,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
