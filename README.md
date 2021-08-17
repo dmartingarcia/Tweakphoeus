@@ -1,6 +1,8 @@
-[![Gem Version](https://badge.fury.io/rb/tweakphoeus.svg)](https://badge.fury.io/rb/tweakphoeus)
-[![Code Climate](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/gpa.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
+[![Gem Version](https://img.shields.io/gem/v/typhoeus.svg)](https://rubygems.org/gems/typhoeus)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4c831c3308b1f53bc2a/maintainability)](https://codeclimate.com/github/basestylo/Tweakphoeus/maintainability)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![Issue Count](https://codeclimate.com/github/basestylo/Tweakphoeus/badges/issue_count.svg)](https://codeclimate.com/github/basestylo/Tweakphoeus)
+
 # Tweakphoeus
 
 We usually describe this gem as 'typhoeus on steroids'. We add some browser features, for example cookies management and automation in tipical headers that browsers define in his HTTP stack.
