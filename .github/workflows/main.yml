@@ -14,3 +14,8 @@ jobs:
         bundler-cache: true
     - name: Run the default task
       run: bundle exec rake
+    services:
+      whoami:
+        image: containous/whoami
+        ports:
+          - 8080:80
