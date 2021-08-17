@@ -1,0 +1,17 @@
+name: On new tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish-new-version:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish gem
+      uses: dawidd6/action-publish-gem@v1
+      with:
+        api_key: ${{secrets.RUBYGEMS_API_KEY}}
+        github_token: ${{secrets.GITHUB_TOKEN}}
