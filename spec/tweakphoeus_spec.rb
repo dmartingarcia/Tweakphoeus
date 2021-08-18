@@ -9,7 +9,7 @@ describe Tweakphoeus do
 
   %i[get post put delete head patch options].each do |name|
     describe ".#{name}" do
-      let(:response) { Typhoeus::Request.method(name).call('http://localhost:8080/') }
+      let(:response) { Typhoeus::Request.method(name).call('http://whoami:80/') }
 
       it 'returns ok' do
         expect(response.return_code).to eq(:ok)

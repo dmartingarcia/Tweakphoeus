@@ -18,4 +18,4 @@ jobs:
       whoami:
         image: containous/whoami
         ports:
-          - 8080:80
+          - 80
