@@ -24,13 +24,19 @@
 
 Bumping required ruby version to >=2.6.0
 
-
-Upgrading Typhoeus dependency to 1.4.0
-
-
 Upgrading Development dependencies:
 - Bundler 2.2
 - Rake 13.0
 - Rspec 3.10
 
 Swapping CI environment from CircleCI to Github Actions
+
+Upgrading Typhoeus dependency to 1.4.0
+
+-- v0.6.0 - Major refactor of Tweakphoeus::Client API
+
+- New interface for Tweakphoeus::Client
+  - Initializer now accepts ssl_verifypeer and redirect parameters instead of having it on all HTTP verb methods (get, delete and post)
+  - ssl_verifypeer and redirect parameters removed from HTTP verb methods
+  - cookie_jar is not longer an Hash, it has been extracted to Tweakphoeus::CookieJar class
+  - refeer_list is not longer an Array, it has been extracted to Tweakphoeus::RefererList class

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Tweakphoeus do
@@ -5,11 +7,11 @@ describe Tweakphoeus do
     expect(Tweakphoeus::VERSION).not_to be nil
   end
 
-  [:get, :post, :put, :delete, :head, :patch, :options].each do |name|
+  %i[get post put delete head patch options].each do |name|
     describe ".#{name}" do
-      let(:response) { Typhoeus::Request.method(name).call("http://localhost:8080/") }
+      let(:response) { Typhoeus::Request.method(name).call('http://localhost:8080/') }
 
-      it "returns ok" do
+      it 'returns ok' do
         expect(response.return_code).to eq(:ok)
       end
 
