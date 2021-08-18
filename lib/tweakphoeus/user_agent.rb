@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tweakphoeus
+  # User agent data generator
   class UserAgent
     OS_DATA = {
       types: %i[win linux mac],
@@ -28,11 +29,11 @@ module Tweakphoeus
       end
 
       def browser
-        chrome_version = "Chrome/6#{Random.rand(0..5)}.0.#{Random.rand(1000..4000)}.#{Random.rand(100..900)}"
-        webkit_603 = "603.#{Random.rand(0..9)}.#{Random.rand(0..9)}"
-        ["Gecko/20100101 Firefox/#{Random.rand(55..59)}.0",
+        chrome_version = "Chrome/#{Random.rand(90..92)}.0.#{Random.rand(1000..4000)}.#{Random.rand(100..900)}"
+        webkit603 = "603.#{Random.rand(0..9)}.#{Random.rand(0..9)}"
+        ["Gecko/20100101 Firefox/#{Random.rand(82..90)}.0",
          "AppleWebKit/537.36 (KHTML, like Gecko) #{chrome_version} Safari/537.36",
-         "AppleWebKit/#{webkit_603} (KHTML, like Gecko) Version/10.1 #{chrome_version} Safari/#{webkit_603}"].sample
+         "AppleWebKit/#{webkit603} (KHTML, like Gecko) Version/10.1 #{chrome_version} Safari/#{webkit603}"].sample
       end
     end
   end
