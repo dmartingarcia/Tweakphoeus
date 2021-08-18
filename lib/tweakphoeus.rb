@@ -35,8 +35,10 @@ module Tweakphoeus
       http_request(url, body: body, headers: headers, method: :post)
     end
 
-    def set_proxy(url, auth = nil)
-      @proxyuserpwd = "#{auth[:user]}:#{auth[:password]}" if auth.is_a?(Hash)
+    def set_proxy(url, auth)
+      return unless auth
+
+      @proxyuserpwd = "#{auth[:user]}:#{auth[:password]}"
       @proxy = url
     end
 
