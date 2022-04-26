@@ -48,4 +48,8 @@ Upgrading Typhoeus dependency to 1.4.0
 
 -- v0.6.2 - Fixing issues with RefererList calls
   - Solves an issue with `RefererList` module calls
-    > /Users/davidmartingarcia/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/tweakphoeus-0.6.1/lib/tweakphoeus.rb:36:in `post': undefined method `referer_from_headers' for #<Tweakphoeus::Client:0x00007fec6b13dcd8> (NoMethodError)
+    >  /Users/davidmartingarcia/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/tweakphoeus-0.6.1/lib/tweakphoeus.rb:36:in `post': undefined method `referer_from_headers' for #<Tweakphoeus::Client:0x00007fec6b13dcd8> (NoMethodError)
+
+-- v0.6.3 - Fixing issues with CookieJar module calls on Tweakphoeus::Client module
+  - Solves an issue with a missing CookieJar variable in the  module calls
+    > /Users/davidmartingarcia/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/tweakphoeus-0.6.2/lib/tweakphoeus.rb:68:in `build_request_headers': undefined local variable or method `url' for #<Tweakphoeus::Client:0x00007ffa882acb48> (NameError)
