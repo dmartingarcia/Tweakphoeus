@@ -52,7 +52,7 @@ module Tweakphoeus
     private
 
     def http_request(url, body: nil, params: nil, headers: nil, method: :get)
-      response = Typhoeus.send(method, url, body: body, params: params, headers: build_request_headers(headers),
+      response = Typhoeus.send(method, url, body: body, params: params, headers: build_request_headers(headers, url),
                                             proxy: @proxy, proxyuserpwd: @proxyuserpwd, ssl_verifypeer: ssl_verifypeer)
 
       @cookie_jar.obtain_cookies(response)
@@ -63,7 +63,7 @@ module Tweakphoeus
       response
     end
 
-    def build_request_headers(headers)
+    def build_request_headers(headers, url)
       request_headers = merge_default_headers(headers)
       request_headers['Cookie'] = @cookie_jar.cookie_string(url, headers)
       request_headers['Referer'] = @referer_list.last_referer
