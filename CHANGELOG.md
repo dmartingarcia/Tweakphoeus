@@ -40,3 +40,8 @@ Upgrading Typhoeus dependency to 1.4.0
   - ssl_verifypeer and redirect parameters removed from HTTP verb methods
   - cookie_jar is not longer an Hash, it has been extracted to Tweakphoeus::CookieJar class
   - refeer_list is not longer an Array, it has been extracted to Tweakphoeus::RefererList class
+
+-- v0.6.1 - Fixing issues with the modification of a frozen string
+  - Adds missing requires in the mail `.rb` file
+  - Solves an issue with a modification on a frozen string
+    > /Users/davidmartingarcia/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/tweakphoeus-0.6.0/lib/tweakphoeus/user_agent.rb:17:in `gsub!': can't modify frozen String: "Mozilla/5.0 (X11; gNewSense; Linux x86) Gecko/20100101 Firefox/84.0" (FrozenError)
