@@ -23,17 +23,17 @@ module Tweakphoeus
     end
 
     def get(url, body: nil, params: nil, headers: nil)
-      referer_from_headers(headers)
+      referer_list.referer_from_headers(headers)
       http_request(url, body: body, params: params, headers: headers, method: :get)
     end
 
     def delete(url, body: nil, headers: nil)
-      referer_from_headers(headers)
+      referer_list.referer_from_headers(headers)
       http_request(url, body: body, headers: headers, method: :delete)
     end
 
     def post(url, body: nil, headers: nil)
-      referer_from_headers(headers)
+      referer_list.referer_from_headers(headers)
       http_request(url, body: body, headers: headers, method: :post)
     end
 
