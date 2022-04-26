@@ -14,8 +14,7 @@ module Tweakphoeus
       def random(systems: OS_DATA[:types])
         user_agent = "Mozilla/5.0 (#{os[systems.sample]}) #{browser}"
         firefox_version = user_agent.match(%r{Firefox/([0-9.]+)})
-        user_agent.gsub!(')', "; rv:#{firefox_version[1]})") if firefox_version.is_a?(MatchData)
-        user_agent
+        user_agent.gsub(')', "; rv:#{firefox_version[1]})") if firefox_version.is_a?(MatchData)
       end
 
       private
