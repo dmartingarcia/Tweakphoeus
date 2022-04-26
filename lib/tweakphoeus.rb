@@ -2,6 +2,8 @@
 
 require 'tweakphoeus/version'
 require 'tweakphoeus/user_agent'
+require 'tweakphoeus/cookie_jar'
+require 'tweakphoeus/referer_list'
 require 'typhoeus'
 
 module Tweakphoeus
