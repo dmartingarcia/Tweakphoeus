@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  whoami:
+    image: containous/whoami
+    expose:
+      -  80
+  app:
+    build:
+      context: .
+    links:
+      - whoami
+    volumes:
+      - .:/usr/src/app
+      - bundle_cache:/bundle
+    environment:
+      BUNDLE_PATH: /bundle
+
+volumes:
+  bundle_cache:
